@@ -96,12 +96,18 @@ def null_check(df, null_tolerance):
             
 def keys_check(df, cols_chaves):
     '''
-    Função ???????????????????????????
-    INPUT: ???????????????????????????
-    OUTPUT: ???????????????????????????
+    Verifica se todas as chaves requeridas estão presentes no DataFrame.
+    INPUT:df (pd.DataFrame): DataFrame a ser processado.
+          cols_chaves (list): Lista de colunas que são chaves e devem estar presentes.
+
+    OUTPUT:
+        None
     '''
-    #colocar log info
-    pass
+    missing_keys = [col for col in cols_chaves if col not in df.columns]
+    if missing_keys:
+        logger.error(f"Chaves ausentes: {', '.join(missing_keys)}; {datetime.datetime.now()}")
+    else:
+        logger.info(f"Todas as chaves estão presentes; {datetime.datetime.now()}")
 
 # Funções auxiliares -------------------------------------------
 
